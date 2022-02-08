@@ -1,0 +1,25 @@
+{
+  "name": "cf-wrangler-starter",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker Wrangle Starter",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:prod": "esbuild --define:process.env.NODE_ENV='\"production\"' --bundle --sourcemap --outdir=dist ./index.ts",
+    "build:dev": "esbuild --define:process.env.NODE_ENV='\"development\"' --bundle --sourcemap --outdir=dist ./index.ts",
+    "dev": "miniflare --build-command \"pnpm run build:dev\" --watch",
+    "deploy": "wrangler publish"
+  },
+  "keywords": [
+    "Cloudflare Worker"
+  ],
+  "homepage": "https://github.com/upupming/cf-wrangler-starter#readme",
+  "author": "Yiming Li",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "3.3.1",
+    "esbuild": "0.14.20",
+    "miniflare": "2.3.0",
+    "wrangler": "0.0.4",
+    "@cloudflare/kv-asset-handler": "0.2.0"
+  }
+}

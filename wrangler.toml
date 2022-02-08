@@ -1,0 +1,22 @@
+# required in the deployment domain: https://cf-wrangler-starter.upupming.workers.dev
+name = "cf-wrangler-starter"
+# `javascript` checks for a build command specified in the [build] section
+type = "javascript"
+# See https://developers.cloudflare.com/workers/platform/compatibility-dates
+compatibility_date = "2022-02-08"
+# Assign a `workers.dev` domain
+workers_dev = true
+
+[build]
+# default is `src`
+watch_dir = "index.ts"
+command = "pnpm run build:prod"
+[build.upload]
+# required and must be "service-worker"
+format="service-worker"
+
+[site]
+# https://developers.cloudflare.com/workers/cli-wrangler/commands#kvkey
+# https://developers.cloudflare.com/workers/cli-wrangler/configuration#site
+bucket = "./public"
+entry-point = "."
